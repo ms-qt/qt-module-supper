@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.5)
 project(modules)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -34,6 +34,6 @@ add_library(modules
 
         bdlbsc/module/data/DataDb.h
 
-        bdlbsc/module/common/Common.cpp bdlbsc/module/common/Common.h)
+        bdlbsc/module/common/Common.cpp bdlbsc/module/common/Common.h bdlbsc/module/supper/IUtils.h bdlbsc/module/supper/IThreadUtils.h bdlbsc/module/supper/IString.h bdlbsc/module/supper/Modules.h bdlbsc/module/supper/IMD5Utils.h)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5:sql)
