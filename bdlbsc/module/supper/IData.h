@@ -5,11 +5,12 @@
 #ifndef MODULES_IDATA_H
 #define MODULES_IDATA_H
 
-
 #include "IModule.h"
-namespace bdlbsc {
+namespace bdlbsc
+{
 
-    class IData : public IModule {
+    class IData : public IModule
+    {
 
         Q_OBJECT
     public:
@@ -33,7 +34,6 @@ namespace bdlbsc {
         virtual QString get_base_url() = 0;
         virtual void set_base_url(QString values) = 0;
     };
-}// namespace bdlbsc
+} // namespace bdlbsc
 
-
-#endif//MODULES_IDATA_H
+#endif //MODULES_IDATA_H
