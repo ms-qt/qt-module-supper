@@ -1,11 +1,9 @@
 ﻿#pragma execution_character_set("utf-8")
-#include <QQuickImageProvider>
-#include <QQuickAsyncImageProvider>
 #include <QQmlImageProviderBase>
-
+#include <QQuickAsyncImageProvider>
+#include <QQuickImageProvider>
 
 class QNetworkAccessManager;
-
 
 // 图片加载 同步
 

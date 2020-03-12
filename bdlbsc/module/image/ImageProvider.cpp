@@ -1,11 +1,10 @@
 ﻿#include "ImageProvider.h"
 
+#include <QEventLoop>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QEventLoop>
 
-ImageProvider::ImageProvider(ImageType type, Flags flags) :
-        QQuickImageProvider(type, flags)
+ImageProvider::ImageProvider(ImageType type, Flags flags) : QQuickImageProvider(type, flags)
 {
     manager = new QNetworkAccessManager;
 }
@@ -17,16 +16,12 @@ ImageProvider::~ImageProvider()
 
 QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
 {
-
-    qDebug() << " id : " << id;
-
     QUrl url(id);
     QNetworkReply *reply = manager->get(QNetworkRequest(url));
     QEventLoop eventLoop;
     QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
     eventLoop.exec();
-    if (reply->error() != QNetworkReply::NoError)
-    {
+    if (reply->error() != QNetworkReply::NoError) {
         QImage *img = new QImage();
         img->load("qrc:/images/image_default.png", "PNG");
         // 如果出现错误

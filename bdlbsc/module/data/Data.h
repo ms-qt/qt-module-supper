@@ -5,11 +5,15 @@
 #ifndef MODULES_DATA_H
 #define MODULES_DATA_H
 
-
-#include <DataDb.h>
+#include <bdlbsc/module/data/DataDb.h>
 #include <bdlbsc/module/supper/IData.h>
-namespace bdlbsc {
-    class Data : public IData {
+
+#include <cpp_redis/cpp_redis>
+
+namespace bdlbsc
+{
+    class Data : public IData
+    {
 
         Q_OBJECT
     public:
@@ -30,8 +34,9 @@ namespace bdlbsc {
         QString get_base_url() override;
         void set_base_url(QString values) override;
 
-
     private:
+        cpp_redis::client redis_client;
+
         QString _app_id;
         QString _app_secret;
         QString _app_access_token;
@@ -40,8 +45,6 @@ namespace bdlbsc {
         QString _base_url;
     };
 
+} // namespace bdlbsc
 
-}// namespace bdlbsc
-
-
-#endif//MODULES_DATA_H
+#endif //MODULES_DATA_H

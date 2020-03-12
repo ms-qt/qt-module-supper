@@ -5,4 +5,25 @@
 #ifndef QT_MODULES_IUTILS_H
 #define QT_MODULES_IUTILS_H
 
+#include "IMD5Utils.h"
+#include "IModule.h"
+#include "IStringUtils.h"
+#include "ISystemUtils.h"
+#include "IThreadUtils.h"
+#include "IUUIDUtils.h"
+namespace bdlbsc
+{
+    class IUtils : public IModule
+    {
+        Q_OBJECT
+    public:
+        virtual ~IUtils() = 0;
+        virtual IMD5Utils md5_utils() = 0;
+        virtual IStringUtils string_utils() = 0;
+        virtual IThreadUtils thread_utils() = 0;
+        virtual IUUIDUtils uuid_utils() = 0;
+        virtual ISystemUtils system_utils() = 0;
+    };
+} // namespace bdlbsc
+
 #endif //QT_MODULES_IUTILS_H

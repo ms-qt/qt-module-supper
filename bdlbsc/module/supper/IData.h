@@ -33,6 +33,18 @@ namespace bdlbsc
 
         virtual QString get_base_url() = 0;
         virtual void set_base_url(QString values) = 0;
+
+        virtual QString get_ip() = 0;
+
+        virtual void get_mac() = 0;
+
+        virtual int get_screen_count() = 0;
+
+        virtual int get_screen1_width() = 0;
+        virtual int get_screen1_height() = 0;
+
+        virtual int get_screen2_width() = 0;
+        virtual int get_screen2_height() = 0;
     };
 } // namespace bdlbsc
 

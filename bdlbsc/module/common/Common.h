@@ -5,17 +5,23 @@
 #ifndef MODULES_COMMON_H
 #define MODULES_COMMON_H
 #include <QtCore/QObject>
+#include <bdlbsc/module/common/Modules.h>
 #include <bdlbsc/module/data/Data.h>
-namespace bdlbsc {
-    class Common : public QObject {
+namespace bdlbsc
+{
+    class Common : public QObject
+    {
         Q_OBJECT
     public:
+        static Common *get_instance();
+        void init_log();
+        Modules *get_modules();
+    private:
         Common();
         ~Common();
-
-        // 获取data
-        static bdlbsc::Data getData();
+        Modules *modules;
+        static Common *instance;
     };
-}// namespace bdlbsc
+} // namespace bdlbsc
 
-#endif//MODULES_COMMON_H
+#endif //MODULES_COMMON_H

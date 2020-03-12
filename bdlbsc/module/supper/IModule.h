@@ -7,14 +7,15 @@
 
 #include <QObject>
 
-namespace bdlbsc {
-    class IModule : public QObject {
+namespace bdlbsc
+{
+    class IModule : public QObject
+    {
         Q_OBJECT
     public:
         virtual ~IModule() = 0;
         virtual QString module_name() = 0;
     };
-}// namespace bdlbsc
+} // namespace bdlbsc
 
-
-#endif//MODULES_IMODULE_H
+#endif //MODULES_IMODULE_H

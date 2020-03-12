@@ -6,29 +6,28 @@
 #ifndef DOPER_DAPP_IMAGEASYNCIMAGEPROVIDER_H
 #define DOPER_DAPP_IMAGEASYNCIMAGEPROVIDER_H
 
+#include <QDebug>
+#include <QEventLoop>
+#include <QImage>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QThreadPool>
 #include <qqmlengine.h>
 #include <qquickimageprovider.h>
-#include <QDebug>
-#include <QImage>
-#include <QThreadPool>
-#include <QNetworkReply>
-#include <QNetworkAccessManager>
-#include <QEventLoop>
-
-
 
 // 图片加载异步
 
-class AsyncImageResponseRunnable : public QObject, public QRunnable
+class AsyncImageResponseRunnable
+    : public QObject
+    , public QRunnable
 {
-Q_OBJECT
+    Q_OBJECT
 signals:
 
     void done(QImage image);
 
 public:
-    AsyncImageResponseRunnable(const QString &id, const QSize &requestedSize)
-            : m_id(id), m_requestedSize(requestedSize)
+    AsyncImageResponseRunnable(const QString &id, const QSize &requestedSize) : m_id(id), m_requestedSize(requestedSize)
     {
         manager = new QNetworkAccessManager();
     }
@@ -42,8 +41,7 @@ public:
         QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
         eventLoop.exec();
 
-        if (reply->error() != QNetworkReply::NoError)
-        {
+        if (reply->error() != QNetworkReply::NoError) {
             QImage *img = new QImage();
             img->load(":/images/image_default.png", "PNG");
             emit done(*img);
@@ -98,6 +96,5 @@ public:
 private:
     QThreadPool pool;
 };
-
 
 #endif //DOPER_DAPP_IMAGEASYNCIMAGEPROVIDER_H

@@ -4,7 +4,8 @@
 
 #include "DataDb.h"
 
-bdlbsc::DataDb::DataDb() {
+bdlbsc::DataDb::DataDb()
+{
     // 初始化数据库
     init();
     // 创建表
@@ -21,10 +22,10 @@ bdlbsc::DataDb::DataDb() {
     }
 }
 
-bdlbsc::DataDb::~DataDb() noexcept {
-}
+bdlbsc::DataDb::~DataDb() noexcept {}
 
-void bdlbsc::DataDb::init() {
+void bdlbsc::DataDb::init()
+{
     // 初始化数据库
     QSqlDatabase database = QSqlDatabase::database();
     if (!database.isValid()) {
@@ -48,10 +49,7 @@ void bdlbsc::DataDb::init() {
     }
 }
 
-
-void bdlbsc::DataDb::set_app_id(QString values) {
-
-}
+void bdlbsc::DataDb::set_app_id(QString values) {}
 void bdlbsc::DataDb::set_app_secret(QString values) {}
 void bdlbsc::DataDb::set_app_access_token(QString values) {}
 void bdlbsc::DataDb::set_user_access_token(QString values) {}

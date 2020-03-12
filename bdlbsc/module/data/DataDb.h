@@ -13,12 +13,13 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlQueryModel>
 
-namespace bdlbsc {
-    class DataDb : public QSqlQueryModel {
+namespace bdlbsc
+{
+    class DataDb : public QSqlQueryModel
+    {
         Q_OBJECT
         DataDb();
         ~DataDb();
-
 
         void set_app_id(QString values);
         void set_app_secret(QString values);
@@ -34,7 +35,6 @@ namespace bdlbsc {
         QString get_user_id();
         QString get_base_url();
 
-
     private:
         void init();
         QSqlQuery sqlQuery;
@@ -48,7 +48,6 @@ namespace bdlbsc {
                                               "    _base_url          varchar(512)\n"
                                               ");";
     };
-}// namespace bdlbsc
+} // namespace bdlbsc
 
-
-#endif//MODULES_DATADB_H
+#endif //MODULES_DATADB_H

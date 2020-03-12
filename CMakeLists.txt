@@ -14,26 +14,44 @@ if (UNIX AND NOT APPLE)
 endif (UNIX AND NOT APPLE)
 
 
-find_package(Qt5 COMPONENTS Core sql REQUIRED)
+include_directories(D:/Local/vcpkg/installed/x64-windows/include)
+link_directories(D:/Local/vcpkg/installed/x64-windows/lib)
+
+include_directories("D:/Local/libs/include")
+link_directories("D:/Local/libs/lib")
 
 
-set(SRC)
+find_package(Qt5 COMPONENTS
+        Core
+        sql
+        REQUIRED)
 
-
-add_library(modules
-
-        bdlbsc/module/supper/IModule.h
+set(SRC
 
         bdlbsc/module/supper/IData.h
+        bdlbsc/module/supper/IMD5Utils.h
+        bdlbsc/module/supper/IModule.h
+        bdlbsc/module/supper/IStringUtils.h
+        bdlbsc/module/supper/IThreadUtils.h
+        bdlbsc/module/supper/IUtils.h
+        bdlbsc/module/supper/IUUIDUtils.h
+
+
+
+
 
         bdlbsc/module/data/Data.cpp
-
         bdlbsc/module/data/Data.h
-
         bdlbsc/module/data/DataDb.cpp
-
         bdlbsc/module/data/DataDb.h
+        bdlbsc/module/common/Common.cpp
+        bdlbsc/module/common/Common.h
+        bdlbsc/module/common/Modules.h
 
-        bdlbsc/module/common/Common.cpp bdlbsc/module/common/Common.h bdlbsc/module/supper/IUtils.h bdlbsc/module/supper/IThreadUtils.h bdlbsc/module/supper/IString.h bdlbsc/module/supper/Modules.h bdlbsc/module/supper/IMD5Utils.h)
+        bdlbsc/module/supper/ISystemUtils.h)
+
+add_library(${PROJECT_NAME}
+        ${SRC}
+        )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5:sql)

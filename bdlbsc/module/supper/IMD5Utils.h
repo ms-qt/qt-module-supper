@@ -5,4 +5,19 @@
 #ifndef MODULES_IMD5_H
 #define MODULES_IMD5_H
 
+#include "IModule.h"
+#include <QObject>
+
+namespace bdlbsc
+{
+
+    class IMD5Utils : public IModule
+    {
+        Q_OBJECT
+    public:
+        virtual ~IMD5Utils() = 0;
+    };
+
+} // namespace bdlbsc
+
 #endif //MODULES_IMD5_H
