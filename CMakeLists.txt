@@ -12,11 +12,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
 if (UNIX AND NOT APPLE)
     set(LINUX 1)
 endif (UNIX AND NOT APPLE)
-
 
 if (UNIX)
     include_directories(/usr/local/dev/vcpkg/installed/x64-osx/include)
@@ -25,7 +23,6 @@ if (UNIX)
     include_directories(/usr/local/include)
     link_directories(/usr/local/lib)
 endif (UNIX)
-
 
 if (WIN32)
 
@@ -36,6 +33,23 @@ if (WIN32)
     link_directories("D:/Local/libs/lib")
 
 endif (WIN32)
+
+
+if (UNIX)
+    SET(CMAKE_INSTALL_PREFIX /usr/local)
+endif (UNIX)
+
+if (WIN32)
+    SET(CMAKE_INSTALL_PREFIX D:/Local/libs)
+endif (WIN32)
+
+if (UNIX)
+    SET(LIBRARY_OUTPUT_PATH /usr/local/lib)
+endif (UNIX)
+
+if (WIN32)
+    SET(LIBRARY_OUTPUT_PATH D:/Local/libs/lib)
+endif ()
 
 
 find_package(Qt5
@@ -171,3 +185,41 @@ if (APPLE)
     # mac 通知使用的库
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::MacExtras)
 endif (APPLE)
+
+
+# 如果没有指定安装路径，就安装到当前目录
+if (NOT CMAKE_INSTALL_BINDIR)
+    set(CMAKE_INSTALL_BINDIR ".")
+endif ()
+
+
+install(TARGETS ${PROJECT_NAME}
+        EXPORT ${PROJECT_NAME}
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin
+        ARCHIVE DESTINATION lib)
+
+install(DIRECTORY bdlbsc DESTINATION include FILES_MATCHING PATTERN "*.h")
+
+configure_file(cmake/Config.cmake.in ${PROJECT_NAME}Config.cmake @ONLY)
+
+if (WIN32)
+
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+            DESTINATION D:/Local/libs/lib/cmake/bdlbsc/module/supper)
+
+    install(EXPORT ${PROJECT_NAME}
+            NAMESPACE bdlbsc
+            DESTINATION D:/Local/libs/lib/cmake/bdlbsc/module/supper)
+
+endif (WIN32)
+
+if (UNIX)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+            DESTINATION /usr/local/lib/cmake/bdlbsc/module/supper)
+
+    install(EXPORT ${PROJECT_NAME}
+            NAMESPACE bdlbsc
+            DESTINATION /usr/local/lib/cmake/bdlbsc/module/supper)
+endif (UNIX)
+
