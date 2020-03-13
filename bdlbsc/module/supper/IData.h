@@ -1,11 +1,11 @@
-//
+﻿//
 // Created by dev on 2020/3/12.
 //
 
 #ifndef MODULES_IDATA_H
 #define MODULES_IDATA_H
 
-#include "IModule.h"
+#include <bdlbsc/module/supper/IModule.h>
 namespace bdlbsc
 {
 

@@ -1,11 +1,11 @@
 ﻿#pragma once
-#pragma execution_character_set("UTF-8")
+#pragma execution_character_set("utf-8")
 #include <QDebug>
- 
+
 namespace Logger
 {
 #ifdef _DEBUG
-    #define LOG_DEBUG qDebug() << __FILE__ << __LINE__
+#define LOG_DEBUG qDebug() << __FILE__ << __LINE__
 #define LOG_INFO qInfo() << __FILE__ << __LINE__
 #define LOG_WARN qWarning() << __FILE__ << __LINE__
 #define LOG_CRIT qCritical() << __FILE__ << __LINE__
@@ -15,6 +15,6 @@ namespace Logger
 #define LOG_WARN qWarning() << __FUNCTION__
 #define LOG_CRIT qCritical() << __FUNCTION__
 #endif
-    void initLog(const QString& logPath = QStringLiteral("Log"), int logMaxCount = 1024);
+    void initLog(const QString &logPath = QStringLiteral("Log"), int logMaxCount = 1024);
 
 } // namespace Logger

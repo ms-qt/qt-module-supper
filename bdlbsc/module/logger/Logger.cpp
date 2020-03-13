@@ -5,8 +5,6 @@
 #include <QDateTime>
 #include <QDir>
 #include <QMutex>
- 
-#include <string>
 
 #ifdef Q_OS_WIN
 #include <Windows.h>
@@ -27,13 +25,11 @@ namespace Logger
         gLogDir = QCoreApplication::applicationDirPath() + "/" + logPath;
         gLogMaxCount = logMaxCount;
         QDir dir(gLogDir);
-        if (!dir.exists())
-        {
+        if (!dir.exists()) {
             dir.mkpath(dir.absolutePath());
         }
         QStringList infoList = dir.entryList(QDir::Files, QDir::Name);
-        while (infoList.size() > gLogMaxCount)
-        {
+        while (infoList.size() > gLogMaxCount) {
             dir.remove(infoList.first());
             infoList.removeFirst();
         }
@@ -41,8 +37,8 @@ namespace Logger
 
     static void outputMessage(QtMsgType type, const QMessageLogContext &context, const QString &msg)
     {
-        static const QString messageTemp= QString("<div class=\"%1\">%2</div>\r\n");
-        static const char typeList[] = {'d', 'w', 'c', 'f', 'i'};
+        static const QString messageTemp = QString("<div class=\"%1\">%2</div>\r\n");
+        static const char typeList[] = { 'd', 'w', 'c', 'f', 'i' };
         static QMutex mutex;
         static QFile file;
         static QTextStream textStream;
@@ -62,10 +58,8 @@ namespace Logger
         QString htmlMessage = messageTemp.arg(typeList[static_cast<int>(type)]).arg(message);
         QString newfileName = QString("%1/%2_log.html").arg(gLogDir).arg(fileNameDt);
         mutex.lock();
-        if (file.fileName() != newfileName)
-        {
-            if (file.isOpen())
-            {
+        if (file.fileName() != newfileName) {
+            if (file.isOpen()) {
                 file.close();
             }
             file.setFileName(newfileName);
@@ -73,8 +67,7 @@ namespace Logger
             file.open(QIODevice::WriteOnly | QIODevice::Append);
             textStream.setDevice(&file);
             textStream.setCodec("UTF-8");
-            if (!exist)
-            {
+            if (!exist) {
                 textStream << logTemplate << "\r\n";
             }
         }
@@ -83,12 +76,12 @@ namespace Logger
         mutex.unlock();
 
 #ifdef Q_OS_WIN
-       
-        wchar_t* WStr = message.toStdWString().data();
+
+        wchar_t *WStr = message.toStdWString().data();
         size_t len = wcslen(WStr) + 1;
         size_t converted = 0;
-        char* CStr;
-        CStr = (char*)malloc(len * sizeof(char));
+        char *CStr;
+        CStr = (char *)malloc(len * sizeof(char));
         wcstombs_s(&converted, CStr, len, WStr, _TRUNCATE);
 
         ::OutputDebugString(CStr);

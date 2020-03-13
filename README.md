@@ -20,3 +20,12 @@
 ## 主控面板
 
 # main
+
+
+
+
+# vcpkg libs
+
+    
+    vcpkg install cpp-redis:x64-windows
+

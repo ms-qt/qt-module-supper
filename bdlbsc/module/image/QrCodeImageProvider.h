@@ -5,28 +5,25 @@
 #ifndef DOPER_DAPP_QRCODEIMAGEPROVIDER_H
 #define DOPER_DAPP_QRCODEIMAGEPROVIDER_H
 
-
-#include<QQuickImageProvider>
-#include <QUuid>
-#include <QDateTime>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QDebug>
-#include "src/qrcode/QRCodeGenerator.h"
-#include "src/utils/SystemUtils.h"
-#include "src/utils/MD5Utils.h"
 #include "src/data/CommonData.h"
+#include "src/qrcode/QRCodeGenerator.h"
+#include "src/utils/MD5Utils.h"
+#include "src/utils/SystemUtils.h"
+#include <QDateTime>
+#include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QQuickImageProvider>
+#include <QUuid>
 
 class QrCodeImageProvider : public QQuickImageProvider
 {
 public:
-    QrCodeImageProvider() : QQuickImageProvider(QQuickImageProvider::Pixmap)
-    {
-    }
+    QrCodeImageProvider() : QQuickImageProvider(QQuickImageProvider::Pixmap) {}
 
     QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize) override
     {
-        qDebug()<<"id : "<<id;
+        qDebug() << "id : " << id;
 
         return refresh(id);
     }
@@ -44,12 +41,9 @@ public:
         int encodeImageSize = qrImageSize + (QR_MARGIN * 2);
         QImage encodeImage(encodeImageSize, encodeImageSize, QImage::Format_Mono);
         encodeImage.fill(1);
-        for (int i = 0; i < qrImageSize; i++)
-        {
-            for (int j = 0; j < qrImageSize; j++)
-            {
-                if (qrEncode.m_byModuleData[i][j])
-                {
+        for (int i = 0; i < qrImageSize; i++) {
+            for (int j = 0; j < qrImageSize; j++) {
+                if (qrEncode.m_byModuleData[i][j]) {
                     encodeImage.setPixel(i + QR_MARGIN, j + QR_MARGIN, 0);
                 }
             }

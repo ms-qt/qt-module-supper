@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by dev on 2020/3/12.
 //
 
@@ -22,6 +22,7 @@ bdlbsc::Common *bdlbsc::Common::get_instance()
     return instance;
 }
 
-bdlbsc::Modules* bdlbsc::Common::get_modules() {
+bdlbsc::Modules *bdlbsc::Common::get_modules()
+{
     return modules;
 }

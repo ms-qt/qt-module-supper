@@ -1,10 +1,11 @@
-//
+﻿//
 // Created by 毛华伟 on 2020/3/12.
 //
 
 #ifndef MODULES_IUUIDUTILS_H
 #define MODULES_IUUIDUTILS_H
-#include "IModule.h"
+#include <bdlbsc/module/supper/IModule.h>
+
 
 namespace bdlbsc
 {

@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by 毛华伟 on 2020/3/12.
 //
 
@@ -7,7 +7,7 @@
 
 #include <QObject>
 
-#include "IModule.h"
+#include <bdlbsc/module/supper/IModule.h>
 namespace bdlbsc
 {
     class IStringUtils : public IModule

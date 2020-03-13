@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by 毛华伟 on 2020/3/12.
 //
 
@@ -20,8 +20,8 @@ namespace bdlbsc
         Modules();
 
     public:
-        static IData data();
-        static IUtils utils();
+        static IData* data();
+        static IUtils* utils();
     };
 
 } // namespace bdlbsc

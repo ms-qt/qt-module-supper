@@ -6,44 +6,46 @@
 #ifndef APP_DYNAMICLOADCOMPONENT_H
 #define APP_DYNAMICLOADCOMPONENT_H
 
-
-#include <QObject>
-#include <QString>
 #include <QFileSystemWatcher>
+#include <QObject>
 #include <QQmlApplicationEngine>
+#include <QString>
 
-class DynamicLoadComponent : public QObject
+namespace bdlbsc
 {
-Q_OBJECT
-    Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY statusChanged)
 
-public:
-    explicit DynamicLoadComponent(QObject *parent = nullptr);
-    virtual ~DynamicLoadComponent();
-    Q_INVOKABLE void clear();
-
-    static QQmlApplicationEngine *qmlEngine()
+    class DynamicLoadComponent : public QObject
     {
-        static QQmlApplicationEngine _engine;
-        return &_engine;
-    }
+        Q_OBJECT
+        Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY statusChanged)
 
-    QString url();
-    void setUrl(QString url);
+    public:
+        explicit DynamicLoadComponent(QObject *parent = nullptr);
+        virtual ~DynamicLoadComponent();
+        Q_INVOKABLE void clear();
 
-signals:
-    void statusChanged();
+        static QQmlApplicationEngine *qmlEngine()
+        {
+            static QQmlApplicationEngine _engine;
+            return &_engine;
+        }
 
-public slots:
-    void onFileChanged(QString file);
+        QString url();
+        void setUrl(QString url);
 
-private:
-    QString m_url;
-    QFileSystemWatcher m_fileWatch;
-    QStringList m_monitorFiles;
-    QQmlApplicationEngine *m_engine;
-};
+    signals:
+        void statusChanged();
 
+    public slots:
+        void onFileChanged(QString file);
 
+    private:
+        QString m_url;
+        QFileSystemWatcher m_fileWatch;
+        QStringList m_monitorFiles;
+        QQmlApplicationEngine *m_engine;
+    };
+
+} // namespace bdlbsc
 
 #endif //APP_DYNAMICLOADCOMPONENT_H

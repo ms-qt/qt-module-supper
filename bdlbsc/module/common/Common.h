@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by dev on 2020/3/12.
 //
 
@@ -6,7 +6,11 @@
 #define MODULES_COMMON_H
 #include <QtCore/QObject>
 #include <bdlbsc/module/common/Modules.h>
-#include <bdlbsc/module/data/Data.h>
+#include <bdlbsc/module/data/Data.h>\
+
+
+// 组件初始化
+// 单例设计
 namespace bdlbsc
 {
     class Common : public QObject
@@ -16,6 +20,7 @@ namespace bdlbsc
         static Common *get_instance();
         void init_log();
         Modules *get_modules();
+
     private:
         Common();
         ~Common();
