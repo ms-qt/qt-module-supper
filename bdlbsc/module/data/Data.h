@@ -10,6 +10,7 @@
 
 #include <cpp_redis/cpp_redis>
 
+
 namespace bdlbsc
 {
     class Data : public IData

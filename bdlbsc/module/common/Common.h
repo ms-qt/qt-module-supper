@@ -6,7 +6,7 @@
 #define MODULES_COMMON_H
 #include <QtCore/QObject>
 #include <bdlbsc/module/common/Modules.h>
-#include <bdlbsc/module/data/Data.h>\
+#include <bdlbsc/module/data/Data.h>
 
 
 // 组件初始化

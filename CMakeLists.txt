@@ -9,7 +9,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -18,17 +18,25 @@ if (UNIX AND NOT APPLE)
 endif (UNIX AND NOT APPLE)
 
 
-include_directories(D:/Local/vcpkg/installed/x64-windows/include)
-link_directories(D:/Local/vcpkg/installed/x64-windows/lib)
+if (UNIX)
+    include_directories(/usr/local/dev/vcpkg/installed/x64-osx/include)
+    link_directories(/usr/local/dev/vcpkg/installed/x64-osx/share/lib)
 
-include_directories("D:/Local/libs/include")
-link_directories("D:/Local/libs/lib")
+    include_directories(/usr/local/include)
+    link_directories(/usr/local/lib)
+endif (UNIX)
 
 
 if (WIN32)
-    add_definitions ( -D_UNICODE )
-    remove_definitions ( -D_MBCS )
+
+    include_directories(D:/Local/vcpkg/installed/x64-windows/include)
+    link_directories(D:/Local/vcpkg/installed/x64-windows/lib)
+
+    include_directories("D:/Local/libs/include")
+    link_directories("D:/Local/libs/lib")
+
 endif (WIN32)
+
 
 find_package(Qt5
         COMPONENTS
