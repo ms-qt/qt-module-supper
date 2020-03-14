@@ -6,6 +6,16 @@
 #define MODULES_STRINGUTILS_H
 
 #include <bdlbsc/module/supper/IStringUtils.h>
+#include <cryptopp/aes.h>
+#include <cryptopp/config.h>
+#include <cryptopp/filters.h>
+#include <cryptopp/modes.h>
+#include <cryptopp/pch.h>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <stdio.h>
+
 namespace bdlbsc
 {
 
@@ -18,6 +28,10 @@ namespace bdlbsc
 
         QString encoding(QString str) override;
         QString decoding(QString str) override;
+
+    private:
+        unsigned char key[CryptoPP::AES::DEFAULT_KEYLENGTH], iv[CryptoPP::AES::BLOCKSIZE];
+        void initKv();
     };
 
 } // namespace bdlbsc
