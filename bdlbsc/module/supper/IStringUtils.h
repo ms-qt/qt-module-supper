@@ -15,6 +15,8 @@ namespace bdlbsc
         Q_OBJECT
     public:
         virtual ~IStringUtils() = 0;
+        virtual QString encoding(QString str) = 0;
+        virtual QString decoding(QString str) = 0;
     };
 
 } // namespace bdlbsc

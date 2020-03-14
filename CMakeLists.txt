@@ -68,6 +68,9 @@ find_package(Qt5
         WebSockets
         REQUIRED)
 
+
+find_package(rxcpp CONFIG REQUIRED)
+
 if (UNIX)
     find_package(Qt5MacExtras REQUIRED)
     find_package(Qt5DBus REQUIRED)
@@ -111,8 +114,6 @@ set(SRC
         bdlbsc/module/logger/LoggerTemplate.h
 
 
-        bdlbsc/module/networkserver/DownloadClient.cpp
-        bdlbsc/module/networkserver/DownloadClient.h
         bdlbsc/module/networkserver/HttpClient.cpp
         bdlbsc/module/networkserver/HttpClient.h
         bdlbsc/module/networkserver/HttpRequest.cpp
@@ -152,7 +153,7 @@ set(SRC
         bdlbsc/module/systemfeatures/ImageClipboard.cpp
         bdlbsc/module/systemfeatures/ImageClipboard.h
 
-        )
+        bdlbsc/module/utils/SystemUtils.cpp bdlbsc/module/utils/SystemUtils.h bdlbsc/module/utils/Utils.cpp bdlbsc/module/utils/Utils.h bdlbsc/module/utils/MD5Utils.cpp bdlbsc/module/utils/MD5Utils.h bdlbsc/module/utils/StringUtils.cpp bdlbsc/module/utils/StringUtils.h bdlbsc/module/utils/ThreadUtils.cpp bdlbsc/module/utils/ThreadUtils.h bdlbsc/module/utils/UUIDUtils.cpp bdlbsc/module/utils/UUIDUtils.h bdlbsc/module/common/Modules.cpp)
 
 
 set(SRC_APPLE
@@ -180,6 +181,8 @@ target_link_libraries(
         Qt5::Multimedia
         Qt5::WebSockets
 )
+
+target_link_libraries(${PROJECT_NAME} PRIVATE rxcpp)
 
 if (APPLE)
     # mac 通知使用的库

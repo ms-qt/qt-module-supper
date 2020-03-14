@@ -4,8 +4,8 @@
 
 #ifndef MODULES_IMD5_H
 #define MODULES_IMD5_H
-#include <bdlbsc/module/supper/IModule.h>
 #include <QObject>
+#include <bdlbsc/module/supper/IModule.h>
 
 namespace bdlbsc
 {
@@ -15,6 +15,8 @@ namespace bdlbsc
         Q_OBJECT
     public:
         virtual ~IMD5Utils() = 0;
+
+        virtual QString md5(QString str)=0;
     };
 
 } // namespace bdlbsc

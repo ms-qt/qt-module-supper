@@ -7,8 +7,10 @@
 
 #include <QObject>
 
+#include <bdlbsc/module/data/Data.h>
 #include <bdlbsc/module/supper/IData.h>
 #include <bdlbsc/module/supper/IUtils.h>
+#include <bdlbsc/module/utils/Utils.h>
 
 namespace bdlbsc
 {
@@ -18,10 +20,14 @@ namespace bdlbsc
         Q_OBJECT
     public:
         Modules();
+        ~Modules();
 
-    public:
-        static IData* data();
-        static IUtils* utils();
+        IData *data();
+        IUtils *utils();
+
+    private:
+        Data *_data;
+        Utils *_utils;
     };
 
 } // namespace bdlbsc

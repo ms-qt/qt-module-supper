@@ -14,7 +14,7 @@ namespace bdlbsc
         Q_OBJECT
     public:
         virtual ~IModule() = 0;
-        virtual QString module_name() = 0;
+       // virtual QString module_name() = 0;
     };
 } // namespace bdlbsc
 

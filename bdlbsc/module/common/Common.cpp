@@ -2,27 +2,34 @@
 // Created by dev on 2020/3/12.
 //
 
-#include "Common.h"
+#include <bdlbsc/module/common/Common.h>
 
-bdlbsc::Common *bdlbsc::Common::instance = nullptr;
-
-bdlbsc::Common::Common()
-{
-    modules = new Modules();
-}
-
-bdlbsc::Common::~Common() noexcept {}
-
-bdlbsc::Common *bdlbsc::Common::get_instance()
+namespace bdlbsc
 {
 
-    if (instance == nullptr) {
-        instance = new Common();
+    bdlbsc::Common *bdlbsc::Common::instance = nullptr;
+
+    bdlbsc::Common::Common()
+    {
+        modules = new Modules();
     }
-    return instance;
-}
 
-bdlbsc::Modules *bdlbsc::Common::get_modules()
-{
-    return modules;
-}
+    bdlbsc::Common::~Common() noexcept {}
+
+    bdlbsc::Common *bdlbsc::Common::get_instance()
+    {
+
+        if (instance == nullptr) {
+            instance = new Common();
+        }
+        return instance;
+    }
+
+    bdlbsc::Modules *bdlbsc::Common::get_modules()
+    {
+        if (modules == nullptr) {
+            modules = new Modules;
+        }
+        return modules;
+    }
+} // namespace bdlbsc
