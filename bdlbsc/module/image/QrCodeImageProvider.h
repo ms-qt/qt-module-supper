@@ -5,12 +5,11 @@
 #ifndef DOPER_DAPP_QRCODEIMAGEPROVIDER_H
 #define DOPER_DAPP_QRCODEIMAGEPROVIDER_H
 
-#include "src/data/CommonData.h"
-#include "src/qrcode/QRCodeGenerator.h"
-#include "src/utils/MD5Utils.h"
-#include "src/utils/SystemUtils.h"
+#include <bdlbsc/module/qrcode/QRCodeGenerator.h>
+
 #include <QDateTime>
 #include <QDebug>
+
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QQuickImageProvider>

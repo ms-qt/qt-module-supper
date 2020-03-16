@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 set(IDENTIFIER "bdlbsc")
 set(COPYRIGHT "Copyright © 2019-2020 bdlbsc")
 
-project(modules VERSION 1.0.0 LANGUAGES CXX)
+project(module-supper VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
